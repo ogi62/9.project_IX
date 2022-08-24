@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map,switchMap, Observable, pluck, mergeMap, of, filter } from 'rxjs';
+import { map,switchMap, Observable, pluck, mergeMap, of, filter, toArray } from 'rxjs';
 import { HttpParams, HttpClient } from '@angular/common/http';
 
 import { CoordinatesInterface } from '../types/cordinatesInterface';
@@ -49,7 +49,14 @@ export class WeatherService {
         // break array of 40objects to just 40 objects
         mergeMap(value => of(...value)),
         // return every 8th object ... 
-        filter((value, index)=> index % 8 === 0)
+        filter((value, index)=> index % 8 === 0),
+        map((value)=> {
+          return {
+            dateString: value.dt_txt,
+            temp: value.main.temp
+          }
+        }),
+        toArray()
 
         // 2. second way ...
         // alternative for this up thing is when you do line 44,45and 46...
