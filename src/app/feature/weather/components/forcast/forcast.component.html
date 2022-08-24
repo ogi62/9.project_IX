@@ -1,1 +1,4 @@
-<p>forcast works!</p>
+<div *ngFor="let forecast of forecast$ | async">
+    {{ forecast.temp | number: '2.0-0' }} °C,
+    {{ forecast.dateString | date: 'E, d MM y' }}
+</div>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { WeatherService } from '../../services/weather.service';
+import { forecastDataInterface } from '../../types/forecastDataInterface';
 
 
 
@@ -12,17 +14,15 @@ import { WeatherService } from '../../services/weather.service';
 
 export class ForcastComponent implements OnInit {
 
-  // forecastData: <forecastDataInterface>[]; not working ???
-  forecastData!:{dateString: string, temp: number}[];
+  forecast$!: Observable<forecastDataInterface[]>;
 
   constructor(private weatherService: WeatherService ) { 
-   weatherService.getForecast()
-   .subscribe((forecastDataRes)=> {
-    this.forecastData = forecastDataRes;
-   });
+   this.forecast$ =  weatherService.getForecast()
+   
   }
 
   ngOnInit(): void {
   }
 
+  
 }
