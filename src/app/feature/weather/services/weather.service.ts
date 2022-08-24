@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map,switchMap, Observable, pluck, mergeMap, of, filter, toArray } from 'rxjs';
+import { map,switchMap, Observable, pluck, mergeMap, of, filter, toArray, share } from 'rxjs';
 import { HttpParams, HttpClient } from '@angular/common/http';
 
 import { CoordinatesInterface } from '../types/cordinatesInterface';
@@ -56,7 +56,8 @@ export class WeatherService {
             temp: value.main.temp
           }
         }),
-        toArray()
+        toArray(),
+        share()
 
         // 2. second way ...
         // alternative for this up thing is when you do line 44,45and 46...
