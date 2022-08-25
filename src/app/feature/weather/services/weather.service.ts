@@ -11,7 +11,8 @@ import {
   share,
   tap,
   throwError,
-  catchError
+  catchError,
+  retry
 } from 'rxjs';
 import { HttpParams, HttpClient } from '@angular/common/http';
 
@@ -40,6 +41,7 @@ export class WeatherService {
         (err) => observer.error(err)
       );
     }).pipe(
+      retry(1),
       tap(()=> {
         this.notificationsService.addSuccess('Got your location')
       }),
