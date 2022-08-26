@@ -9,7 +9,7 @@ import { NewsApiModule } from './feature/news-api/news-api.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

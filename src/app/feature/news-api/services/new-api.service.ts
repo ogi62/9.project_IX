@@ -6,6 +6,9 @@ export interface Article {
   title: string;
   url: string;
   urlToImage: string;
+  source: {
+    name: string;
+  }
 }
 
 export interface NewsApiResponseInterface {
