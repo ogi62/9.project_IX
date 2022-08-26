@@ -1,0 +1,10 @@
+<div>
+    <h1>Word News</h1>
+    <div class="list-group" *ngFor="let article of articles"> 
+        <a 
+        class="list-group-item list-group-item-action"
+        [href]="article.url"
+        target="_blank"
+        >{{ article.title }}</a>
+    </div>
+</div>
